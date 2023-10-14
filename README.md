@@ -23,6 +23,8 @@
 
     16 % 6 + 1 = 5 вариант
 
+**th** - гиперболический тангенс
+
 ![image](https://github.com/Santas7/ASM/assets/86359412/fe6b7e83-2fe1-4326-95db-c4ca52e20bac)
 
 
