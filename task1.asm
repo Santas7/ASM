@@ -13,9 +13,9 @@ section .text
         READ_DOUBLE value
         ; сохраняем CW FPU в mode
         fstcw [mode] 
-        mov al, [mode+1]
+        mov al, [mode + 1]
         or al, 8
-        mov [mode+1], al
+        mov [mode + 1], al
         ; загрузка CW FPU
         fldcw [mode] 
         fld qword[value] ; ST(0)
