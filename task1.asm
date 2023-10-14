@@ -28,7 +28,7 @@ section .text
         ret
 
     sse:
-        READ_DOUBLE xmm0
+        READ_FLOAT xmm0
         ; сохраняем состояния регистра MXCSR в mode
         stmxcsr [mode] 
         or qword[mode], 0x00004000
