@@ -9,12 +9,11 @@ section .rodata
 section .text
     global main
     main:
-        ;write your code here
-        call calculate_cosine
+        call acos
         xor rax, rax
         ret
     
-    calculate_cosine:
+    acos:
         READ_FLOAT xmm0
     
         ; приближение cos(x) = a0 - (x^2/2!) + (x^4/4!) - (x^6/6!) + ... 
