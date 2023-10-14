@@ -3,6 +3,7 @@
 section .rodata
     a dd 0.5
     exp dd 2.7182818284
+    one dd 1.0
     two dd 2.0
     
 section .bss
@@ -27,30 +28,71 @@ section .text
         fmul  
         fstp dword[x]
         
-        ; получаем 2x
-        PRINT_FLOAT x  
-        NEWLINE
-        
         ; Вычислить e^(2(a/x)) - 1
         fld dword[x]     
         fild dword[exp]  
-        
-        ; вычисление e^2x
+        movss xmm0, dword[x]
+        movss dword[numerator], xmm0
+        fld dword[numerator]
+        fldl2e
+        fmulp st1, st0
+        fld st0
+        frndint
+        fsub st1, st0
+        fxch st1
+        f2xm1
+        fld1
+        faddp st1, st0
+        fscale
+        fld dword[one]
+        fadd 
+        fstp dword[numerator]
 
-        fstp dword[numerator]  
-        
-        
         ; Вычислить e^(2(a/x)) + 1
         fld dword[x]
         fld dword[exp]
-        
-        ; вычисление e^2x
-        
+        movss xmm0, dword[x]
+        movss dword[denominator], xmm0
+        fld dword[denominator]
+        fldl2e
+        fmulp st1, st0
+        fld st0
+        frndint
+        fsub st1, st0
+        fxch st1
+        f2xm1
+        fld1
+        faddp st1, st0
+        fscale
+        fld dword[one]
+        fsub 
         fstp dword[denominator]
         
+        ; частное числитель/знаменатель
         fld dword[numerator] 
         fld dword[denominator] 
         fdiv
-        fstp dword[right]  ; Сохранить результат в right
-        PRINT_FLOAT right  ; Вывести результат
+        fstp dword[right] 
+        PRINT_STRING "Left: "
+        PRINT_FLOAT y
+        NEWLINE
+        PRINT_STRING "Right: "
+        PRINT_FLOAT right  
+        NEWLINE
+        
+        ; проверка на равенство левой и правой части
+        movss xmm0, dword[right]
+        movss xmm1, dword[y]
+        cmpeqss xmm0, xmm1
+        je answer_yes
+        jmp answer_no
+       
+    answer_yes:
+        PRINT_STRING "YES equal"
+        jmp end
+    
+    answer_no:
+        PRINT_STRING "NO equal"
+    
+    end:
         ret
