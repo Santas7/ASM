@@ -8,11 +8,6 @@ section .rodata
 
 section .text
     global main
-    main:
-        call acos
-        xor rax, rax
-        ret
-    
     acos:
         READ_FLOAT xmm0
     
@@ -40,4 +35,9 @@ section .text
         subss xmm3, xmm2  ; a0 - x^2/2! + x^4/4! - x^6/6! + ...
         
         PRINT_FLOAT xmm3
+        ret
+        
+    main:
+        call acos
+        xor rax, rax
         ret
