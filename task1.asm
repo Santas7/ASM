@@ -28,14 +28,16 @@ section .text
         ret
 
     sse:
-        READ_FLOAT xmm0
+        READ_DOUBLE xmm0
         ; сохраняем состояния регистра MXCSR в mode
         stmxcsr [mode] 
         or qword[mode], 0x00004000
         ; загрузка CW
         ldmxcsr [mode]
+        ; если исп-ть FLOAT
+        ; cvtss2si
         ; в целое число
-        cvtss2si rax, xmm0
+        cvtsd2si rax, xmm0
         PRINT_DEC 8, rax
         xor rax, rax
         ret
