@@ -1,8 +1,8 @@
 section .rodata
-    two dd 2.0
-    x db "", 0dh, 0
-    a db "%f", 0
-    b db "%f", 0
+    two: dd 2.0
+    x: db "", 0dh, 0
+    a: db "%f", 0
+    b: db "%f", 0
 
 section .text
     global main
