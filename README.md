@@ -1,4 +1,4 @@
-## Лабораторная работа номер 3
+## Лабораторная работа номер 3 (6 вариант)
 
 [условие лабы](https://drive.google.com/drive/folders/1Uc1NfYvonoCkSPvRP71gTaYT70sj0h1A)
 
@@ -69,11 +69,67 @@ Free. Аналогами являются открытый проект radare2 
 
   ![изображение](https://github.com/Santas7/ASM/assets/86359412/dcce5e19-5852-4893-83f5-987aecbf1ca9)
 
+  функция на C:
+  
+  ```c++
+  int __fastcall access6(int a1, __int16 a2, char a3, int a4)
+    {
+      if ( sin((double)(a4 - a2 - a3 - a1)) <= 0.0 )
+      {
+        puts("Access denied");
+        exit(-1);
+      }
+      return puts("Access granted");
+    } 
+  ```
+  
   ### MID УРОВЕНЬ
   
   ![изображение](https://github.com/Santas7/ASM/assets/86359412/faff9628-97a2-4d4c-b3af-8e7208ab8378)
+  
+  функция на C:
+  
+  ```c++
+ namespace var6 {
+        struct S {
+            /**/
+        };
+
+        void access(__int64 a1, double a2, int a3) {
+            __m128i v3 = _mm_setzero_si128(); 
+            if ((static_cast<float>(static_cast<int>(*(_QWORD *)a1) * *(float *)(a1 + 12)) != static_cast<float>(static_cast<int>(*(float *)(a1 + 8)))) || (_mm_cvtsi128_si32(v3) < 0 == (_mm_movemask_pd(*(__m128d *)&a2) & 1))) {
+                puts("Access denied");
+                exit(-1);
+            }
+            return puts("Access granted");
+        }
+    }
+  ```
 
   ### СЛОЖНЫЙ УРОВЕНЬ
   ![изображение](https://github.com/Santas7/ASM/assets/86359412/7d042ce7-3e55-43a3-89b0-08cd9dc7e5cd)
 
+  функция на C:
+  
+  ```c++
+  namespace var6 {
+        struct S {
+            /**/
+        };
+
+        class C {
+        public:
+            void access(__int64 a1, __int64 a2, const S& s) {
+                if (a1 != *(_QWORD *)a2 || (checkFloatRatio(a2) && checkDoubleValue(a1))) {
+                    puts("Access denied");
+                    exit(-1);
+                }
+                return puts("Access granted");
+            }
+
+        private:
+          /**/
+        };
+    }
+  ```
 
